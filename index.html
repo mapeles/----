@@ -11,15 +11,45 @@
         <div id="name-modal">
             <h3>이름을 입력해주세요.</h3>
             <input type="text" name="" id="username">
-            <input type="button" value="확인">
+            <input type="button" value="확인" onclick="getUsername()">
         </div>
-        <div id="contents">
+        <div id="contents" class="hide">
             <div class="greeting">
                 <h2><span id="name"></span>님 환영합니다</h2>
                 <h2>오늘의 운세를 확인하기 위해 포춘쿠키를 선택해주세요</h2>
             </div>
+            <div id="box-container">
+                <div class="box">
+                    <img src="./fortune-cookie-before.png" alt="포츈쿠키이미지">
+                </div>
+                <div class="box">
+                    <img src="./fortune-cookie-before.png" alt="포츈쿠키이미지">
+                </div>
+                <div class="box">
+                    <img src="./fortune-cookie-before.png" alt="포츈쿠키이미지">
+                </div>
+            </div>
             <!--포춘쿠키 이미지 넣기 및 운세결과 보여주기-->
+            <div id="result-message">가나다라마바사아자차카타파하</div>
         </div>
     </div>
+    <script>
+        function getUsername() {//함수실행
+            const input = document.getElementById('username')//입력된 칸에서 input이라는 변수로 받아옴
+            const username = input.value.toString()//input변수 를 username내에 문자로 변환한뒤 저장
+            if(username.length == 0){//만약 username 변수의 문자열 길이가 0일경우
+                window.alert('이름을 입력해주세요')//경고
+            }
+            else{
+                const modal = document.getElementById('name-modal')
+                const contents = document.getElementById('contents')
+                const span = document.getElementById('name')//span이라는 변수안에 name 부분을 할당
+                span.innerText = username // span 부분에 username 변수값을 입력
+                modal.classList.add('hide')
+                contents.classList.remove('hide')
+            }
+        }
+        
+    </script>
 </body>
 </html>
