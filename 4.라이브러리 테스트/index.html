@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    @font-face {
+        font-family: 'TheJamsil5Bold';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+    }
+    body{
+        font-family: 'TheJamsil5Bold';
+        font-size: 50px;
+    }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="contents">
+            <span>나는</span>
+            <span id="element"></span>
+            <span>라고할뻔</span>
+        </div>
+    </div>
+  <!-- Load library from the CDN -->
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+  <!-- Setup and start animation! -->
+  <script>
+    var typed = new Typed('#element', {
+      strings: ['집에가고싶다','학교가기싫다','김성준이다','! 나는 !','개발자입니다'],
+      typeSpeed: 50,
+      loop: true,
+    });
+  </script>
+</body>
+</body>
+</html>
