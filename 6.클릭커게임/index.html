@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bitcoin Clicker Game</title>
+    <script src="https://kit.fontawesome.com/0441fe5535.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,7 +18,7 @@
             <div class="left">
                 <h2>BTC : <span class="score">0</span></h2>
                 <h4 style="color: gray;">USD = <span class="usd">0</span>$</h4>
-                <img src="./img/bitcoin.png" alt="bitcoin" onclick="incrementScore()" draggable="false">
+                <img src="./img/bitcoin.png" alt="bitcoin" onclick="incrementScore(), showClickNumber()" draggable="false">
             </div>
             <div class="right"></div>
         </div>
@@ -40,6 +41,23 @@
             score.innerHTML = new Number(n).toFixed(7)
             n1 = 37856 * n
             bittousd.innerHTML = new Number(n1).toFixed(7)
+        }
+        function showClickNumber() {
+         let x = event.clientX
+         let y = event.clientY - 20
+         console.log(x,y)   
+         const div = document.createElement('div')
+         const left = document.querySelector('.left')
+         div.innerText = `+${new Number(nofc).toFixed(7)}`
+         div.style.position='absolute'
+         div.style.top = y + 'px' 
+         div.style.left = x + 'px'
+         div.draggable = 'false'
+         div.classList.add('show-nofc')
+         left.appendChild(div)
+         setTimeout(()=>{
+            left.removeChild(div)
+         },900)
         }
     </script>
 </body>

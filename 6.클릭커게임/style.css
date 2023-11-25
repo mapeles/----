@@ -58,3 +58,20 @@ header button:active{
 .left img:hover{
     cursor: pointer;
 }
+.show-nofc {
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(55, 54, 54);
+    text-shadow: 2px 2px 5px yellow;
+    animation: 1s fade-up ;
+}
+@keyframes fade-up {
+    0%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(-100px);
+        opacity: 0;
+    }  
+}
