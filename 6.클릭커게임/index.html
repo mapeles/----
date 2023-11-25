@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Clicker Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <button>Save</button>
+        <h2>Bitcoin Clicker Game</h2>
+        <button>Load</button>
+    </header>
+    <section>
+        <div class="container">
+            <div class="left">
+                <h2>BTC : <span class="score">0</span></h2>
+                <h4 style="color: gray;">USD = <span class="usd">0</span>$</h4>
+                <img src="./img/bitcoin.png" alt="bitcoin" onclick="incrementScore()" draggable="false">
+            </div>
+            <div class="right"></div>
+        </div>
+    </section>
+    <script>
+        let nofc = 0.0000001;
+        let autoc = 0.00000001;
+        let score = document.querySelector(".score")
+        let bittousd = document.querySelector(".usd")
+        function init(){
+            setInterval(()=>{
+                n = parseFloat(score.innerHTML) + autoc
+                score.innerHTML = new Number(n).toFixed(7)
+                n1 = 37856 * n
+                bittousd.innerHTML = new Number(n1).toFixed(7)
+            }, 1000)
+        }
+        function incrementScore(){
+            n = parseFloat(score.innerHTML) + nofc
+            score.innerHTML = new Number(n).toFixed(7)
+            n1 = 37856 * n
+            bittousd.innerHTML = new Number(n1).toFixed(7)
+        }
+    </script>
+</body>
+</html>

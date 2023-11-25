@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music</title> 
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/c7bbe96938.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="container">
+        <!-- 플레이리스트 제목-->
+        <h1>
+            <strong>K-POP PLAYLIST</strong>
+        </h1>
+        <!-- 시멘틱 태그(의미를 가진 태그 ) : 태그를 통해서 쉽게 내용을 찾으려고 -->
+        <section>
+            <div class="my-slick">
+                <!-- track 1-->
+                <div class="inner">
+                    <!-- 앨범 이미지 -->
+                    <div class="pic">
+                        <div class="dot"></div>
+                    </div>
+                    <!-- 음악 정보, 플레이어 -->
+                    <div class="txt">
+                        <h2>My title1</h2>
+                        <p>artist</p>
+                        <ul>
+                            <li class="pause">
+                                <i class="fas fa-solid fa-pause"></i>
+                            </li>
+                            <li class="play">
+                                <i class="fas fa-solid fa-play"></i>
+                            </li>
+                            <li class="load">
+                                <i class="fas fa-solid fa-redo-alt"></i>
+                            </li>
+                        </ul>
+                        <audio src=""></audio>
+                    </div>
+                </div>
+                <!-- track 2-->
+                <div class="inner">
+                    <!-- 앨범 이미지 -->
+                    <div class="pic">
+                        <div class="dot"></div>
+                    </div>
+                    <!-- 음악 정보, 플레이어 -->
+                    <div class="txt">
+                        <h2>My title2</h2>
+                        <p>artist</p>
+                        <ul>
+                            <li class="pause">
+                                <i class="fas fa-solid fa-pause"></i>
+                            </li>
+                            <li class="play">
+                                <i class="fas fa-solid fa-play"></i>
+                            </li>
+                            <li class="load">
+                                <i class="fas fa-solid fa-redo-alt"></i>
+                            </li>
+                        </ul>
+                        <audio src=""></audio>
+                    </div>
+                </div>
+                <!-- track 3-->
+                <div class="inner">
+                    <!-- 앨범 이미지 -->
+                    <div class="pic">
+                        <div class="dot"></div>
+                    </div>
+                    <!-- 음악 정보, 플레이어 -->
+                    <div class="txt">
+                        <h2>My title3</h2>
+                        <p>artist</p>
+                        <ul>
+                            <li class="pause">
+                                <i class="fas fa-solid fa-pause"></i>
+                            </li>
+                            <li class="play">
+                                <i class="fas fa-solid fa-play"></i>
+                            </li>
+                            <li class="load">
+                                <i class="fas fa-solid fa-redo-alt"></i>
+                            </li>
+                        </ul>
+                        <audio src=""></audio>
+                    </div>
+                </div>
+                <!-- track 4-->
+                <div class="inner">
+                    <!-- 앨범 이미지 -->
+                    <div class="pic">
+                        <div class="dot"></div>
+                    </div>
+                    <!-- 음악 정보, 플레이어 -->
+                    <div class="txt">
+                        <h2>My title4</h2>
+                        <p>artist</p>
+                        <ul>
+                            <li class="pause">
+                                <i class="fas fa-solid fa-pause"></i>
+                            </li>
+                            <li class="play">
+                                <i class="fas fa-solid fa-play"></i>
+                            </li>
+                            <li class="load">
+                                <i class="fas fa-solid fa-redo-alt"></i>
+                            </li>
+                        </ul>
+                        <audio src=""></audio>
+                    </div>
+                </div>
+                <!-- track 5-->
+                <div class="inner">
+                    <!-- 앨범 이미지 -->
+                    <div class="pic">
+                        <div class="dot"></div>
+                    </div>
+                    <!-- 음악 정보, 플레이어 -->
+                    <div class="txt">
+                        <h2>My title5</h2>
+                        <p>artist</p>
+                        <ul>
+                            <li class="pause">
+                                <i class="fas fa-solid fa-pause"></i>
+                            </li>
+                            <li class="play">
+                                <i class="fas fa-solid fa-play"></i>
+                            </li>
+                            <li class="load">
+                                <i class="fas fa-solid fa-redo-alt"></i>
+                            </li>
+                        </ul>
+                        <audio src=""></audio>
+                    </div>
+                </div>
+                <!-- track 6-->
+                <div class="inner">
+                    <!-- 앨범 이미지 -->
+                    <div class="pic">
+                        <div class="dot"></div>
+                    </div>
+                    <!-- 음악 정보, 플레이어 -->
+                    <div class="txt">
+                        <h2>My title6</h2>
+                        <p>artist</p>
+                        <ul>
+                            <li class="pause">
+                                <i class="fas fa-solid fa-pause"></i>
+                            </li>
+                            <li class="play">
+                                <i class="fas fa-solid fa-play"></i>
+                            </li>
+                            <li class="load">
+                                <i class="fas fa-solid fa-redo-alt"></i>
+                            </li>
+                        </ul>
+                        <audio src=""></audio>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+        
+        <p> 2023 Created By sungjun </p>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.my-slick').slick({
+                infinite: true,
+                slidesToShow: 3,
+                dots: true,
+                centerMode: true,
+            });
+        });
+    </script>
+</body>
+</html>

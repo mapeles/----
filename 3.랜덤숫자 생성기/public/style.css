@@ -6,13 +6,12 @@
 }
 body{
     font-family: 'TheJamsil5Bold';
-    background-image: url('./bg.jpg');
-    background-size: cover;
+    background-color: rgb(13, 13, 13);
 }
 #name-modal{
     width: 450px;
     height: 250px;
-    background-color: aquamarine;
+    background-color: white;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
