@@ -9,24 +9,65 @@
 </head>
 <body>
     <header>
-        <button>Save</button>
+        <button onclick="save()">Save</button>
         <h2>Bitcoin Clicker Game</h2>
-        <button>Load</button>
+        <button onclick="load()">Load</button>
     </header>
     <section>
         <div class="container">
             <div class="left">
-                <h2>BTC : <span class="score">0</span></h2>
+                <h2>BTC : <span class="score">100</span></h2>
                 <h4 style="color: gray;">USD = <span class="usd">0</span>$</h4>
                 <img src="./img/bitcoin.png" alt="bitcoin" onclick="incrementScore(), showClickNumber()" draggable="false">
             </div>
-            <div class="right"></div>
+            <div class="right">
+                <div class="upgrade invalid" onclick="upgrade('Pickaxe')">
+                    <div class="item-img">
+                        <img src="./img/bitcoin-pickaxe.png" alt="">
+                    </div>
+                    <div class="contents">
+                        <h2>Pickaxe</h2>
+                        <p>+ 0.0000001BTC</p>
+                        <p>cost : <span class="cost">0.0000001</span></p>
+                    </div>
+                    <div>
+                        <h3>Level : <span class="level">1</span></h3>
+                    </div>
+                </div>
+                <div class="upgrade invalid" onclick="upgrade('GraphicCard')">
+                    <div class="item-img">
+                        <img src="./img/graphic-card.png" alt="">
+                    </div>
+                    <div class="contents">
+                        <h2>Graphic card</h2>
+                        <p>+ <span class="autoclick">0.0000000</span>BTC (1s)</p>
+                        <p>cost : <span class="cost">0.0000100</span></p>
+                    </div>
+                    <div>
+                        <h3>Level : <span class="level">0</span></h3>
+                    </div>
+            </div>
         </div>
     </section>
     <script>
+        let items = {
+            Pickaxe: {
+                costs : 0.0000001,
+                clicks: 0.0000001,
+                level: 1
+            },
+            GraphicCard:{
+                costs: 0.00001,
+                clicks: 0.0000001,
+                level: 0
+            }
+        }
+        let costs = [0.0000001, 0.00001]
         let nofc = 0.0000001;
         let autoc = 0.00000001;
-        let score = document.querySelector(".score")
+        const score = document.querySelector(".score")
+        const upgrades = document.querySelectorAll(".upgrade")
+        console.log(upgrades)
         let bittousd = document.querySelector(".usd")
         function init(){
             setInterval(()=>{
@@ -34,6 +75,8 @@
                 score.innerHTML = new Number(n).toFixed(7)
                 n1 = 37856 * n
                 bittousd.innerHTML = new Number(n1).toFixed(7)
+                activateItem()
+                console.log(items)
             }, 1000)
         }
         function incrementScore(){
@@ -41,6 +84,7 @@
             score.innerHTML = new Number(n).toFixed(7)
             n1 = 37856 * n
             bittousd.innerHTML = new Number(n1).toFixed(7)
+            activateItem()
         }
         function showClickNumber() {
          let x = event.clientX
@@ -59,6 +103,79 @@
             left.removeChild(div)
          },900)
         }
+        function upgrade(type){
+            let sc = parseFloat(score.innerHTML)
+            const level = event.currentTarget.querySelector('.level')
+            const cost = event.currentTarget.querySelector('.cost')
+            const autoclick = document.querySelector('.autoclick')
+            console.log(level, type)
+            switch(type) {
+                case 'Pickaxe':
+                    if (sc >= items[type].costs){
+                        score.innerHTML = (sc - items[type].costs).toFixed(7)
+                        nofc += 0.0000001
+                        items.Pickaxe.level++
+                        items.Pickaxe.costs += 0.0000001
+                        cost.innerHTML = (items[type].costs).toFixed(7)
+                        costs[0] += 0.0000001
+                        items.Pickaxe.clicks = nofc
+                    }
+                    break
+                case 'GraphicCard':
+                    if (sc >= items[type].costs){
+                        score.innerHTML = (sc - items[type].costs).toFixed(7)
+                        autoc += 0.0000001
+                        items.GraphicCard.level++
+                        items.GraphicCard.costs += 0.00001
+                        cost.innerHTML = (items[type].costs).toFixed(7)
+                        costs[1] += 0.00001
+                        autoclick.innerHTML = autoc.toFixed(7)
+                        items.GraphicCard.clicks = autoc
+                    }
+                    break
+            }
+            level.innerHTML = items[type].level
+            activateItem()
+            
+
+        }
+        function activateItem(){
+            for(let i=0; i<upgrades.length; i++) {
+                if(costs[i] <= parseFloat(score.innerHTML)){
+                    upgrades[i].classList.remove('invalid')
+                } else {
+                    upgrades[i].classList.add('invalid')
+                }
+            }
+        }
+        function save(){
+            const info = {
+                ...items,
+                scores: score.innerHTML,
+                nofc,
+                autoc
+            }
+            localStorage.setItem('clicker', JSON.stringify(info))
+            window.alert('save successfully')
+        }
+        function load(){
+            const loaded = localStorage.getItem('clicker')
+            if(loaded){
+                items = JSON.parse(loaded)
+                score.innerHTML = items.scores
+                nofc = items.nofc
+                autoc = items.autoc
+                const levels = document.querySelectorAll('.level')
+                let i = 0;
+                for(const [key, value] of Object.entries(items)){
+                    if(Object.hasOwn(value, 'level')) {
+                        levels[i].innerHTML = value.level
+                        i++
+                    }
+                }
+            }
+        }
+        init()
     </script>
 </body>
 </html>
