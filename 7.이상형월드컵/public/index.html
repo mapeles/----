@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이상형월드컵</title>
+    <style>
+        body{
+            background-color: rgb(37, 36, 36);
+            box-sizing: border-box;
+            margin: 0;
+            height: 100vh;
+            padding: 20px;
+        }
+        header{
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.633);
+        }
+        header h2{
+            color: white;
+        }
+        section {
+            display: flex;
+            justify-content: center ;
+            padding: 0 70px;
+        }
+        section .vs {
+            position: absolute; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .image{
+            width: 50vw;
+            height: 70vh;
+            text-align: center;
+        }
+        .image img{
+            width: 80%;
+        }
+        p{
+            color: white;
+            text-align: center;
+            font-size: 20px;
+        }
+        .image img:hover{
+            width: 90%;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>라면 순위 월드컵 <span class="counts">0/8</span></h2>
+    </header>
+    <section>
+        <div class="image left">
+            <img src="./img/까르보나라 불닭볶음면컵.jpg" alt="" onclick="select()">
+            <p>까르보나라 불닭볶음면컵</p>
+        </div>
+        <div class="vs"><img src="./vs.png" alt=""></div>
+        <div class="image right">
+            <img src="./img/너구리.jpg" alt="" onclick="select()">
+            <p>너구리</p>
+        </div>
+        <div class="last hide">
+            <img src="" alt="">
+            <p></p>
+        </div>
+    </section>
+    <script>
+        const history = {
+            '8' : [],
+            '4' : [],
+            '2' : [],
+            '1' : []
+        }
+        const names = ['까르보나라 불닭볶음면컵','너구리','로제 불닭볶음면 컵','불닭볶음면','삼양 육개장컵','신라면 블랙','신라면','안성탕면','육개장 사발면','진라면 매운맛','진라면 순한맛','짜파게티','참깨라면','치즈 불닭볶음면','튀김우동컵','팔도비빔면']
+        let round = 8;
+        let match = 0;
+        let uselist = []
+        function shuffle(array){
+            for(let i = array.length - 1; i>0; i--){
+                const randomPos = Math.floor(Math.random() * (i+1))
+                const temp = array[i]
+                array[i] =  array[randomPos]
+                array[randomPos] = temp
+            }
+            console.log()
+        }
+        function showNextMatch(){
+            const limg = document.querySelector('.image.left').querySelector('img');
+            const rimg = document.querySelector('.image.right').querySelector('img');
+            const lp = document.querySelector('.image.left').querySelector('p')
+            const rp = document.querySelector('.image.right').querySelector('p')
+            console.log(limg, rimg)
+            const lname = uselist[2*match]
+            const rname = uselist[2*match+1]
+
+            console.log(lname, rname)
+
+            limg.src = `img/${lname}.jpg`
+            limg.name = lname
+            lp.innerText = lname
+
+            rimg.src = `img/${rname}.jpg`
+            rimg.name = rname
+            rp.innerText = rname
+            const counts = document.querySelector('.counts')
+            if (round!=1) counts.innerText = `${match+1}/${round}`
+            else counts.innerText = '결승전'
+        }
+        function select(){
+            const selected = event.currentTarget.name
+            const key = `${round}`
+            if (round == 1) {
+                const last = document.querySelector('.last')
+                last.classList.remove('hide')
+                document.querySelector('.left').classList.add('hide')
+                document.querySelector('.right').classList.add('hide')
+                document.querySelector('.vs').classList.add('hide')
+                const img = last.querySelector('img')
+                const msg = last.querySelector('p')
+                console.log(selected)
+                img.src = `img/${selected}.jpg`
+                img.name = selected
+                msg.innerText = `당신의 최고 라면은 ${selected} 입니다!`
+                return
+            }
+            if(history[key].length  < round-1){
+                history[key].push(selected)
+                match++
+            }else{
+                history[key].push(selected)
+                round = Math.floor(round/2)
+                uselist = history[key]
+                shuffle(uselist)
+                match = 0
+                
+            }
+            console.log(history, match)
+            showNextMatch()
+        }
+        function init() {
+            shuffle(names)
+            uselist = names
+            showNextMatch()
+        }
+        init()
+    </script>
+</body>
+</html>
